@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import './Dashboard.css';
+import { API_URL } from '../config/api';
 
 const Dashboard = () => {
   const [searchParams] = useSearchParams();
@@ -22,7 +23,7 @@ const Dashboard = () => {
     }
 
     // Fetch User Profile
-    fetch('http://https://awd-project-1.onrender.com/api/user/profile', {
+    fetch(`${API_URL}/api/user/profile`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -31,7 +32,7 @@ const Dashboard = () => {
 
     // Fetch Public Users List
     if (activeTab === 'users') {
-      fetch('http://https://awd-project-1.onrender.com/api/users/list', {
+      fetch(`${API_URL}/api/users/list`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => res.json())
@@ -41,7 +42,7 @@ const Dashboard = () => {
 
     // Fetch Admin All Users
     if (activeTab === 'admin') {
-      fetch('http://https://awd-project-1.onrender.com/api/admin/users', {
+      fetch(`${API_URL}/api/admin/users`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => res.json())
@@ -58,7 +59,7 @@ const Dashboard = () => {
 
   const handleAccountUpdate = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://https://awd-project-1.onrender.com/api/user/profile', {
+    const res = await fetch(`${API_URL}/api/user/profile`, {
       method: 'PUT',
       headers: { 
         'Content-Type': 'application/json',
@@ -74,7 +75,7 @@ const Dashboard = () => {
 
   const handleAdminUserUpdate = async (e) => {
     e.preventDefault();
-    const res = await fetch(`http://https://awd-project-1.onrender.com/api/admin/users/${editingUser._id}`, {
+    const res = await fetch(`${API_URL}/api/admin/users/${editingUser._id}`, {
       method: 'PUT',
       headers: { 
         'Content-Type': 'application/json',
@@ -92,7 +93,7 @@ const Dashboard = () => {
 
   const handleDeleteUser = async (id) => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
-    const res = await fetch(`http://https://awd-project-1.onrender.com/api/admin/users/${id}`, {
+    const res = await fetch(`${API_URL}/api/admin/users/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` }
     });
