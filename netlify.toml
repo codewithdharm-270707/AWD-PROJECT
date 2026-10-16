@@ -1,0 +1,10 @@
+[build]
+  base = "frontend"
+  command = "npm install --include=dev && npm run build"
+  publish = "dist"
+
+# Serve the React app for client-side routes like /login and /dashboard
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

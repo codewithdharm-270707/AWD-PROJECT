@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './AuthForm.css';
+import { API_URL } from '../config/api';
 
 function Register() {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ function Register() {
 
     if (userConfirmed) {
       try {
-        const response = await fetch('http://https://awd-project-1.onrender.com/api/auth/register', {
+        const response = await fetch(`${API_URL}/api/auth/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
